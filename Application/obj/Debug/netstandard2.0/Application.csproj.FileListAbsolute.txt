@@ -11,3 +11,4 @@ C:\Users\svenm\source\repos\CDB-Mark-II\Application\obj\Debug\netstandard2.0\App
 C:\Users\svenm\source\repos\CDB-Mark-II\Application\obj\Debug\netstandard2.0\Application.csproj.CopyComplete
 C:\Users\svenm\source\repos\CDB-Mark-II\Application\obj\Debug\netstandard2.0\Application.dll
 C:\Users\svenm\source\repos\CDB-Mark-II\Application\obj\Debug\netstandard2.0\Application.pdb
+C:\Users\svenm\source\repos\CDB-Mark-II\Application\obj\Debug\netstandard2.0\Application.csproj.CoreCompileInputs.cache

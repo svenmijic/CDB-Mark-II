@@ -9,3 +9,4 @@ C:\Users\svenm\source\repos\CDB-Mark-II\Persistence\obj\Debug\netstandard2.0\Per
 C:\Users\svenm\source\repos\CDB-Mark-II\Persistence\obj\Debug\netstandard2.0\Persistence.csproj.CopyComplete
 C:\Users\svenm\source\repos\CDB-Mark-II\Persistence\obj\Debug\netstandard2.0\Persistence.dll
 C:\Users\svenm\source\repos\CDB-Mark-II\Persistence\obj\Debug\netstandard2.0\Persistence.pdb
+C:\Users\svenm\source\repos\CDB-Mark-II\Persistence\obj\Debug\netstandard2.0\Persistence.csproj.CoreCompileInputs.cache

@@ -12,6 +12,7 @@ namespace Application.Media
         {
             public Guid Id { get; set; }
             public string Name { get; set; }
+            public string Url { get; set; }
             public string Emails { get; set; }
         }
 
@@ -27,6 +28,7 @@ namespace Application.Media
                 var medium = await dataContext.Media.FindAsync(request.Id);
                 if (medium == null) throw new Exception("Medium not found!");
                 medium.Name = request.Name ?? medium.Name;
+                medium.Url = request.Url ?? medium.Url;
                 medium.Emails = request.Emails ?? medium.Emails;
                 if (await dataContext.SaveChangesAsync() > 0) return Unit.Value;
                 throw new Exception("Problem saving changes!");

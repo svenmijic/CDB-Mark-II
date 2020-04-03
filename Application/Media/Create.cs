@@ -14,6 +14,7 @@ namespace Application.Media
         {
             public Guid Id { get; set; }
             public string Name { get; set; }
+            public string Url { get; set; }
             public string Emails { get; set; }
         }
 
@@ -30,6 +31,7 @@ namespace Application.Media
                 {
                     Id = request.Id,
                     Name = request.Name,
+                    Url = request.Url,
                     Emails = request.Emails
                 };
                 dataContext.Media.Add(medium);

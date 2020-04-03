@@ -1,0 +1,76 @@
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100% !important;
+  background-color: rgb(245, 245, 245) !important;
+  font-size: 1.1em;
+}
+
+.ui.inverted.top.fixed.menu {
+  background-image: linear-gradient(
+    to right,
+    #0471b6,
+    #0087bf,
+    #0099b6,
+    #00a99d,
+    #00b57b,
+    #49b962,
+    #73bc46,
+    #99bc26,
+    #b3b813,
+    #ccb304,
+    #e4ad0b,
+    #fba51e
+  ) !important;
+}
+
+.ui.button {
+  font-size: 1.1rem;
+}
+
+.home-page {
+  background: rgb(27, 117, 188);
+  background: linear-gradient(
+    135deg,
+    rgba(27, 117, 188, 1) 0%,
+    rgba(114, 191, 68, 1) 50%,
+    rgba(248, 179, 35, 1) 100%
+  );
+  opacity: 0.8;
+  min-height: 100vh;
+  margin: 0 !important;
+  text-align: center;
+}
+
+.home-page .header {
+  font-size: 6em !important;
+}
+
+.home-page .segment {
+  width: 80% !important;
+  max-width: 800px;
+  margin: auto;
+}
+
+.ui.inverted.top.fixed.menu .item {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.ui.table {
+  margin-top: 0 !important;
+}
+
+form > div {
+  margin-bottom: 30px !important;
+}
+
+.modal .actions {
+  display: flex;
+  justify-content: space-around;
+}
