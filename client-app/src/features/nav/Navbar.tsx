@@ -12,6 +12,7 @@ const Navbar = () => {
       <Menu.Item as={Link} to="/projekti" name="Projekti" />
       <Menu.Item as={Link} to="/tvrtke" name="Tvrtke" />
       <Menu.Item as={Link} to="/mediji" name="Mediji" />
+      <Menu.Item position="right" as={Link} to="/logout" name="Profil" />
     </Menu>
   );
 };
