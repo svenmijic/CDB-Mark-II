@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu } from "semantic-ui-react";
+import { Menu, Dropdown } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -12,7 +12,12 @@ const Navbar = () => {
       <Menu.Item as={Link} to="/projekti" name="Projekti" />
       <Menu.Item as={Link} to="/tvrtke" name="Tvrtke" />
       <Menu.Item as={Link} to="/mediji" name="Mediji" />
-      <Menu.Item position="right" as={Link} to="/logout" name="Profil" />
+      <Dropdown as={Menu.Item} position="right" text="Sven Mijić">
+        <Dropdown.Menu>
+          <Dropdown.Item as={Link} to="/profil" text="Profil" />
+          <Dropdown.Item as={Link} to="/logout" text="Odjavi se" />
+        </Dropdown.Menu>
+      </Dropdown>
     </Menu>
   );
 };

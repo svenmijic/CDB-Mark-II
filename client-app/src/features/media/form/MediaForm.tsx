@@ -13,12 +13,13 @@ interface IProps {
 const MediaForm: React.FC<IProps> = ({ selectedMedium, setUpdate }) => {
   const required = (value: any) => (value ? undefined : "ERROR");
 
-  const handleFormSubmit = (medium: IMedium) => {
+  const handleFormSubmit = async (medium: IMedium) => {
+    medium.url = medium.url.replace(/^https?:\/\//i, "").replace(/\/$/, "");
     if (medium.id == null) {
-      agent.Media.create(medium);
+      await agent.Media.create(medium);
       toast.success("Medij kreiran!");
     } else {
-      agent.Media.update(medium);
+      await agent.Media.update(medium);
       toast.success("Medij ažuriran!");
     }
     setUpdate(true);
@@ -70,9 +71,13 @@ const MediaForm: React.FC<IProps> = ({ selectedMedium, setUpdate }) => {
                 </div>
               )}
             </Field>
-            <Button disabled={invalid} fluid positive type="submit">
-              Potvrdi
-            </Button>
+            <Button
+              disabled={invalid}
+              fluid
+              positive
+              type="submit"
+              content="Potvrdi"
+            />
           </Form>
         )}
       />

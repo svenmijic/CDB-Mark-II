@@ -9,21 +9,7 @@ body {
 }
 
 .ui.inverted.top.fixed.menu {
-  background-image: linear-gradient(
-    to right,
-    #0471b6,
-    #0087bf,
-    #0099b6,
-    #00a99d,
-    #00b57b,
-    #49b962,
-    #73bc46,
-    #99bc26,
-    #b3b813,
-    #ccb304,
-    #e4ad0b,
-    #fba51e
-  ) !important;
+  background-color: #1b75bc !important;
 }
 
 .ui.button {
@@ -45,13 +31,14 @@ body {
 }
 
 .home-page .header {
-  font-size: 6em !important;
+  font-size: 4.5em !important;
+  letter-spacing: 1px;
 }
 
 .home-page .segment {
-  width: 80% !important;
-  max-width: 800px;
+  width: 400px !important;
   margin: auto;
+  border-radius: 15px;
 }
 
 .ui.inverted.top.fixed.menu .item {

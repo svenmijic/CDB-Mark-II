@@ -1,16 +1,13 @@
 import React from "react";
-import { Header, Grid, Segment } from "semantic-ui-react";
+import { Header, Grid } from "semantic-ui-react";
+import Login from "../login/Login";
 
 const Homepage: React.FC = () => {
   return (
-    <Grid verticalAlign="middle" columns={1} className="home-page">
-      <Grid.Column>
-        <Header inverted size="huge" textAlign="center">
-          BEST Zagreb CDB
-        </Header>
-        <Segment size="large">
-          <p>Future login box</p>
-        </Segment>
+    <Grid columns={1} className="home-page">
+      <Grid.Column style={{ marginTop: "20px" }}>
+        <Header inverted>BEST Zagreb CDB</Header>
+        <Login />
       </Grid.Column>
     </Grid>
   );

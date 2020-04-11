@@ -29,8 +29,8 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddDbContext<DataContext>(o => o.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddControllers().AddNewtonsoftJson(o => o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddDbContext<DataContext>(o => o.UseLazyLoadingProxies().UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddCors(o =>
             {
                 o.AddPolicy("CorsPolicy", policy =>

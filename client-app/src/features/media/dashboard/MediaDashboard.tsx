@@ -16,7 +16,7 @@ const MediaDashboard = () => {
   const [update, setUpdate] = useState(false);
 
   const handleOpenForm = (id: string) => {
-    setSelectedMedium(media.filter(m => m.id === id)[0]);
+    setSelectedMedium(media.filter((m) => m.id === id)[0]);
     setShowEditModal(true);
   };
 
@@ -26,7 +26,7 @@ const MediaDashboard = () => {
   };
 
   const handleOpenDeleteModal = (id: string) => {
-    setSelectedMedium(media.filter(m => m.id === id)[0]);
+    setSelectedMedium(media.filter((m) => m.id === id)[0]);
     setShowDeleteModal(true);
   };
 
@@ -44,7 +44,7 @@ const MediaDashboard = () => {
   };
 
   useEffect(() => {
-    agent.Media.list().then(media => {
+    agent.Media.list().then((media) => {
       setMedia(
         media.sort((a, b) =>
           a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()
@@ -81,7 +81,7 @@ const MediaDashboard = () => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {media.map(medium => (
+          {media.map((medium) => (
             <Table.Row key={medium.id}>
               <Table.Cell>{medium.name}</Table.Cell>
               <Table.Cell>
@@ -90,17 +90,17 @@ const MediaDashboard = () => {
                 </a>
               </Table.Cell>
               <Table.Cell>{medium.emails}</Table.Cell>
-              <Table.Cell textAlign="center">
+              <Table.Cell collapsing textAlign="center">
                 <Button
-                  circular
+                  basic
                   color="yellow"
                   icon="edit"
                   onClick={() => handleOpenForm(medium.id)}
                 ></Button>
                 <Button
-                  circular
+                  basic
+                  color="red"
                   icon="delete"
-                  negative
                   onClick={() => handleOpenDeleteModal(medium.id)}
                 ></Button>
               </Table.Cell>

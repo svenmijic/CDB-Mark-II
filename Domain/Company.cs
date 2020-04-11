@@ -13,6 +13,5 @@ namespace Domain
         public string Phone { get; set; }
         public string Comment { get; set; }
         public ICollection<CompanyContact> Contacts { get; set; }
-        public ICollection<Tag> Tags { get; set; }
     }
 }
