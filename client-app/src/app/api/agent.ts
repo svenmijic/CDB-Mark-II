@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { IMedium } from "../models/medium";
+import { ICompany } from "../models/company";
 
 axios.defaults.baseURL = "http://localhost:4000/api";
 
@@ -46,7 +47,7 @@ const requests = {
   get: (url: string) => axios.get(url).then(responseBody),
   post: (url: string, body: {}) => axios.post(url, body).then(responseBody),
   put: (url: string, body: {}) => axios.put(url, body).then(responseBody),
-  delete: (url: string) => axios.delete(url).then(responseBody)
+  delete: (url: string) => axios.delete(url).then(responseBody),
 };
 
 const Media = {
@@ -54,7 +55,16 @@ const Media = {
   details: (id: string) => requests.get(`/media/${id}`),
   create: (medium: IMedium) => requests.post("/media", medium),
   update: (medium: IMedium) => requests.put(`/media/${medium.id}`, medium),
-  delete: (id: string) => requests.delete(`/media/${id}`)
+  delete: (id: string) => requests.delete(`/media/${id}`),
 };
 
-export default { Media };
+const Companies = {
+  list: (): Promise<ICompany[]> => requests.get("/companies"),
+  details: (id: string) => requests.get(`/companies/${id}`),
+  create: (company: ICompany) => requests.post("/companies", company),
+  update: (company: ICompany) =>
+    requests.put(`/companies/${company.id}`, company),
+  delete: (id: string) => requests.delete(`/companies/${id}`),
+};
+
+export default { Media, Companies };

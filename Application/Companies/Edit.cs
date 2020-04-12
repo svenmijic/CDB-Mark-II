@@ -18,6 +18,7 @@ namespace Application.Companies
             public string Phone { get; set; }
             public string Comment { get; set; }
             public string Category { get; set; }
+            public bool IsAnnualSponsor { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -38,6 +39,7 @@ namespace Application.Companies
                 company.Phone = request.Phone ?? company.Phone;
                 company.Comment = request.Comment ?? company.Comment;
                 company.Category = request.Category ?? company.Category;
+                company.IsAnnualSponsor = request.IsAnnualSponsor ? request.IsAnnualSponsor : company.IsAnnualSponsor;
                 if (await dataContext.SaveChangesAsync() > 0) return Unit.Value;
                 throw new Exception("Problem saving changes!");
             }

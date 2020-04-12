@@ -49,10 +49,6 @@ body {
   padding-bottom: 10px;
 }
 
-.ui.table {
-  margin-top: 0 !important;
-}
-
 form > div {
   margin-bottom: 30px !important;
 }
@@ -60,4 +56,16 @@ form > div {
 .modal .actions {
   display: flex;
   justify-content: space-around;
+}
+
+.ui.container {
+  max-width: 80% !important;
+}
+
+input, button {
+  border-radius: 30px !important;
+}
+
+.form .label {
+  border-radius: 30px !important;
 }

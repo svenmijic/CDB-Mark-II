@@ -19,6 +19,7 @@ namespace Application.Companies
             public string Phone { get; set; }
             public string Comment { get; set; }
             public string Category { get; set; }
+            public bool IsAnnualSponsor { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -39,7 +40,8 @@ namespace Application.Companies
                     City = request.City,
                     Phone = request.Phone,
                     Comment = request.Comment,
-                    Category = request.Category
+                    Category = request.Category,
+                    IsAnnualSponsor = request.IsAnnualSponsor
                 };
                 dataContext.Companies.Add(company);
                 if (await dataContext.SaveChangesAsync() > 0) return Unit.Value;

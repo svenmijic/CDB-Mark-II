@@ -13,6 +13,7 @@ namespace Domain
         public string Phone { get; set; }
         public string Comment { get; set; }
         public string Category { get; set; }
+        public bool IsAnnualSponsor { get; set; }
         public virtual ICollection<CompanyContact> Contacts { get; set; }
     }
 }

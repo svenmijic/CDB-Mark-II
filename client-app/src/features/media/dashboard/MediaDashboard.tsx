@@ -92,12 +92,14 @@ const MediaDashboard = () => {
               <Table.Cell>{medium.emails}</Table.Cell>
               <Table.Cell collapsing textAlign="center">
                 <Button
+                  circular
                   basic
                   color="yellow"
                   icon="edit"
                   onClick={() => handleOpenForm(medium.id)}
                 ></Button>
                 <Button
+                  circular
                   basic
                   color="red"
                   icon="delete"
