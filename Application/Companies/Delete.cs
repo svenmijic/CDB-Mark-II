@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Persistence;
 
-namespace Application.Categories
+namespace Application.Companies
 {
     public class Delete
     {
@@ -22,9 +22,9 @@ namespace Application.Categories
             }
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var category = await dataContext.Categories.FindAsync(request.Id);
-                if (category == null) throw new Exception("Category not found!");
-                dataContext.Remove(category);
+                var company = await dataContext.Companies.FindAsync(request.Id);
+                if (company == null) throw new Exception("Company not found!");
+                dataContext.Remove(company);
                 if (await dataContext.SaveChangesAsync() > 0) return Unit.Value;
                 throw new Exception("Problem saving changes!");
             }

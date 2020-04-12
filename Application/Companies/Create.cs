@@ -1,12 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain;
 using MediatR;
 using Persistence;
 
-namespace Application.Categories
+namespace Application.Companies
 {
     public class Create
     {
@@ -14,9 +13,12 @@ namespace Application.Categories
         {
             public Guid Id { get; set; }
             public string Name { get; set; }
-            public Guid? ParentId { get; set; }
-            public Category ParentCategory { get; set; }
-            public ICollection<Category> Children { get; set; }
+            public string Url { get; set; }
+            public string Address { get; set; }
+            public string City { get; set; }
+            public string Phone { get; set; }
+            public string Comment { get; set; }
+            public string Category { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -28,13 +30,18 @@ namespace Application.Categories
             }
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var category = new Category
+                var company = new Company
                 {
                     Id = request.Id,
                     Name = request.Name,
-                    ParentId = request.ParentId
+                    Url = request.Url,
+                    Address = request.Address,
+                    City = request.City,
+                    Phone = request.Phone,
+                    Comment = request.Comment,
+                    Category = request.Category
                 };
-                dataContext.Categories.Add(category);
+                dataContext.Companies.Add(company);
                 if (await dataContext.SaveChangesAsync() > 0) return Unit.Value;
                 throw new Exception("Problem saving changes!");
             }

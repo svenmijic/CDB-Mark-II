@@ -12,6 +12,7 @@ namespace Domain
         public string City { get; set; }
         public string Phone { get; set; }
         public string Comment { get; set; }
-        public ICollection<CompanyContact> Contacts { get; set; }
+        public string Category { get; set; }
+        public virtual ICollection<CompanyContact> Contacts { get; set; }
     }
 }

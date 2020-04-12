@@ -35,8 +35,8 @@ const MediaDashboard = () => {
     setShowDeleteModal(false);
   };
 
-  const handleDeleteMedium = () => {
-    agent.Media.delete(selectedMedium!.id);
+  const handleDeleteMedium = async () => {
+    await agent.Media.delete(selectedMedium!.id);
     setSelectedMedium(undefined);
     setShowDeleteModal(false);
     setUpdate(true);
