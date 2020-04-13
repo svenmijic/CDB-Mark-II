@@ -9,9 +9,9 @@ const Navbar = () => {
         <img id="logo" src="logo128white.png" alt="logo" />
         CDB
       </Menu.Item>
-      <Menu.Item as={Link} to="/projekti" name="Projekti" />
-      <Menu.Item as={Link} to="/tvrtke" name="Tvrtke" />
-      <Menu.Item as={Link} to="/mediji" name="Mediji" />
+      <Menu.Item icon="tasks" as={Link} to="/projekti" name="Projekti" />
+      <Menu.Item icon="briefcase" as={Link} to="/tvrtke" name="Tvrtke" />
+      <Menu.Item icon="globe" as={Link} to="/mediji" name="Mediji" />
       <Dropdown as={Menu.Item} position="right" text="Sven Mijić">
         <Dropdown.Menu>
           <Dropdown.Item as={Link} to="/profil" text="Profil" />

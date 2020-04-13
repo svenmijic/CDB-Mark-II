@@ -13,6 +13,7 @@ import Homepage from "../../features/home/Homepage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CompaniesDashboard from "../../features/companies/dashboard/CompaniesDashboard";
+import CompanyDetails from "../../features/companies/details/CompanyDetails";
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   return (
@@ -31,8 +32,9 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <Navbar />
             <Container fluid style={{ paddingTop: "100px" }}>
               <Switch>
-                <Route exact path="/mediji" component={MediaDashboard} />
                 <Route exact path="/tvrtke" component={CompaniesDashboard} />
+                <Route path="/tvrtke/:id" component={CompanyDetails} />
+                <Route exact path="/mediji" component={MediaDashboard} />
               </Switch>
             </Container>
           </Fragment>

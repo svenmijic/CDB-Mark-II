@@ -24,10 +24,10 @@ const CompaniesDashboard = () => {
 
   return (
     <Grid>
-      <Grid.Column width={12}>
-        <CompaniesList companies={companies} />
+      <Grid.Column width={10}>
+        <CompaniesList companies={companies} setCompanies={setCompanies} />
       </Grid.Column>
-      <Grid.Column width={4}>
+      <Grid.Column width={6}>
         <CompaniesFilters />
       </Grid.Column>
     </Grid>

@@ -1,5 +1,14 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Table, Icon, Button, Modal, Header } from "semantic-ui-react";
+import {
+  Table,
+  Icon,
+  Button,
+  Modal,
+  Header,
+  Segment,
+  Dimmer,
+  Loader,
+} from "semantic-ui-react";
 import { IMedium } from "../../../app/models/medium";
 import MediaForm from "../form/MediaForm";
 import agent from "../../../app/api/agent";
@@ -69,47 +78,60 @@ const MediaDashboard = () => {
         <Icon name="plus" />
         Dodaj novi medij
       </Button>
-      <Table celled selectable striped>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell textAlign="center">Ime medija</Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">URL</Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">Mailovi</Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">
-              Uredi/Izbriši
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {media.map((medium) => (
-            <Table.Row key={medium.id}>
-              <Table.Cell>{medium.name}</Table.Cell>
-              <Table.Cell>
-                <a href={medium.url} target="_blank" rel="noopener noreferrer">
-                  {medium.url}
-                </a>
-              </Table.Cell>
-              <Table.Cell>{medium.emails}</Table.Cell>
-              <Table.Cell collapsing textAlign="center">
-                <Button
-                  circular
-                  basic
-                  color="yellow"
-                  icon="edit"
-                  onClick={() => handleOpenForm(medium.id)}
-                ></Button>
-                <Button
-                  circular
-                  basic
-                  color="red"
-                  icon="delete"
-                  onClick={() => handleOpenDeleteModal(medium.id)}
-                ></Button>
-              </Table.Cell>
+      {media.length === 0 ? (
+        <Segment>
+          <Dimmer active inverted>
+            <Loader inverted size="big" />
+          </Dimmer>
+        </Segment>
+      ) : (
+        <Table celled selectable striped>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell textAlign="center">Ime medija</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">URL</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Mailovi</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">
+                Uredi/Izbriši
+              </Table.HeaderCell>
             </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
+          </Table.Header>
+          <Table.Body>
+            {media.map((medium) => (
+              <Table.Row key={medium.id}>
+                <Table.Cell>{medium.name}</Table.Cell>
+                <Table.Cell>
+                  <a
+                    href={medium.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {medium.url}
+                  </a>
+                </Table.Cell>
+                <Table.Cell>{medium.emails}</Table.Cell>
+                <Table.Cell collapsing textAlign="center">
+                  <Button
+                    circular
+                    basic
+                    color="yellow"
+                    icon="edit"
+                    onClick={() => handleOpenForm(medium.id)}
+                  ></Button>
+                  <Button
+                    circular
+                    basic
+                    color="red"
+                    icon="delete"
+                    onClick={() => handleOpenDeleteModal(medium.id)}
+                  ></Button>
+                </Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      )}
+
       <Modal
         centered
         size="mini"
