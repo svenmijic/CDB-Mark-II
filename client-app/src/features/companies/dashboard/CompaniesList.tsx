@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Segment,
   Input,
@@ -8,22 +8,29 @@ import {
   Header,
   Dimmer,
   Loader,
+  Modal,
 } from "semantic-ui-react";
 import { ICompany } from "../../../app/models/company";
 import { Link } from "react-router-dom";
+import { CompaniesForm } from "../form/CompaniesForm";
 
 interface IProps {
   companies: ICompany[];
-  setCompanies: (companies: ICompany[]) => void;
+  setUpdate: (update: boolean) => void;
 }
 
-const CompaniesList: React.FC<IProps> = ({ companies, setCompanies }) => {
+const CompaniesList: React.FC<IProps> = ({ companies, setUpdate }) => {
+  const [showModal, setShowModal] = useState<boolean>(false);
+
   return (
     <Segment>
-      <Button positive fluid>
+      <Button positive fluid onClick={() => setShowModal(true)}>
         <Icon name="plus" />
         Dodaj novu tvrtku
       </Button>{" "}
+      <Modal open={showModal} onClose={() => setShowModal(false)}>
+        <CompaniesForm selectedCompany={undefined} setUpdate={setUpdate} />
+      </Modal>
       <Input
         className="search-field"
         fluid
@@ -31,12 +38,10 @@ const CompaniesList: React.FC<IProps> = ({ companies, setCompanies }) => {
         placeholder="Pretraži tvrtke"
       />
       <List celled relaxed>
-        {companies.length == 0 ? (
-          <Segment>
-            <Dimmer active inverted>
-              <Loader inverted size="big" />
-            </Dimmer>
-          </Segment>
+        {companies.length === 0 ? (
+          <Dimmer active inverted>
+            <Loader inverted size="big" />
+          </Dimmer>
         ) : (
           companies.map((company) => (
             <List.Item key={company.id}>

@@ -4,7 +4,7 @@ import { Header, Segment } from "semantic-ui-react";
 const CompaniesFilters = () => {
   return (
     <Segment>
-      <Header content="Filteri" />
+      <Header icon="filter" content="Filteri" />
     </Segment>
   );
 };

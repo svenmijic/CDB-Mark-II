@@ -7,6 +7,7 @@ import agent from "../../../app/api/agent";
 
 const CompaniesDashboard = () => {
   const [companies, setCompanies] = useState<ICompany[]>([]);
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     agent.Companies.list().then((c) => {
@@ -20,12 +21,14 @@ const CompaniesDashboard = () => {
         )
       );
     });
-  });
+    setUpdate(false);
+    console.log("RELOAD");
+  }, [setCompanies, update]);
 
   return (
     <Grid>
       <Grid.Column width={10}>
-        <CompaniesList companies={companies} setCompanies={setCompanies} />
+        <CompaniesList companies={companies} setUpdate={setUpdate} />
       </Grid.Column>
       <Grid.Column width={6}>
         <CompaniesFilters />
