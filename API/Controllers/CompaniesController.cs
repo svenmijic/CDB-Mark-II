@@ -19,7 +19,7 @@ namespace API.Controllers
             this.mediator = mediator;
         }
 
-        [HttpGet]
+        [HttpGet("")]
         public async Task<ActionResult<List<Company>>> List()
         {
             return await mediator.Send(new List.Query());
