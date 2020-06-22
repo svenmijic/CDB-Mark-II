@@ -1,10 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Application.Companies;
 using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Persistence;
 
 namespace API.Controllers
 {
@@ -12,42 +12,60 @@ namespace API.Controllers
     [ApiController]
     public class CompaniesController : ControllerBase
     {
-        private readonly IMediator mediator;
+        private readonly DataContext dataContext;
 
-        public CompaniesController(IMediator mediator)
+        public CompaniesController(DataContext dataContext)
         {
-            this.mediator = mediator;
+            this.dataContext = dataContext;
         }
 
-        [HttpGet("")]
-        public async Task<ActionResult<List<Company>>> List()
+        [HttpGet]
+        public async Task<IActionResult> List()
         {
-            return await mediator.Send(new List.Query());
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<Unit>> Create(Create.Command command)
-        {
-            return await mediator.Send(command);
+            return Ok(await dataContext.Companies.ToListAsync());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Company>> Details(Guid id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            return await mediator.Send(new Details.Query { Id = id });
+            var company = await dataContext.Companies.FindAsync(id);
+            if (company == null) return NotFound("Company not found!");
+            return Ok(company);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Company company)
+        {
+            dataContext.Companies.Add(company);
+            if (await dataContext.SaveChangesAsync() > 0) return Created("", company);
+            return BadRequest("Problem saving changes!");
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Unit>> Edit(Guid id, Edit.Command command)
+        public async Task<ActionResult<Unit>> Edit(Company companyDto)
         {
-            command.Id = id;
-            return await mediator.Send(command);
+            var company = await dataContext.Companies.FindAsync(companyDto.Id);
+            if (company == null) return NotFound("Company not found!");
+            company.Name = companyDto.Name ?? company.Name;
+            company.Url = companyDto.Url ?? company.Url;
+            company.Address = companyDto.Address ?? company.Address;
+            company.City = companyDto.City ?? company.City;
+            company.Phone = companyDto.Phone ?? company.Phone;
+            company.Comment = companyDto.Comment ?? company.Comment;
+            company.Category = companyDto.Category ?? company.Category;
+            company.IsAnnualSponsor = companyDto.IsAnnualSponsor ? companyDto.IsAnnualSponsor : company.IsAnnualSponsor;
+            await dataContext.SaveChangesAsync();
+            return Ok(company);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Unit>> Delete(Guid id)
         {
-            return await mediator.Send(new Delete.Command { Id = id });
+            var company = await dataContext.Companies.FindAsync(id);
+            if (company == null) return NotFound("Company not found!");
+            dataContext.Remove(company);
+            if (await dataContext.SaveChangesAsync() > 0) return Ok();
+            return BadRequest("Problem saving changes!");
         }
     }
 }

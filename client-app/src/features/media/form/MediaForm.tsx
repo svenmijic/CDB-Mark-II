@@ -74,7 +74,7 @@ const MediaForm: React.FC<IProps> = ({ selectedMedium, setUpdate }) => {
             <Button
               disabled={invalid}
               fluid
-              positive
+              primary
               type="submit"
               content="Potvrdi"
             />

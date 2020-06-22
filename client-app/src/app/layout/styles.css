@@ -30,6 +30,7 @@ body {
   text-align: center;
 }
 .home-page .header {
+  color: #1b75bc;
   font-size: min(7vw, 3em) !important;
   letter-spacing: 1px;
   margin-bottom: 30px;
@@ -86,6 +87,9 @@ input::placeholder {
 .modal {
   border-radius: 20px !important;
 }
+.modal .scrolling {
+  padding: 0 !important;
+}
 .modal > .header {
   border-radius: 20px 20px 0 0 !important;
 }
@@ -123,4 +127,10 @@ input::placeholder {
   100% {
     transform: rotate(360deg);
   }
+}
+.button.primary {
+  background-color: #1b75bc !important;
+}
+.button.primary:hover {
+  background-color: #155d96 !important;
 }

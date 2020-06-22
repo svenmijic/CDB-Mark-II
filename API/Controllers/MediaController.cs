@@ -1,10 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Application.Media;
 using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Persistence;
 
 namespace API.Controllers
 {
@@ -12,42 +12,55 @@ namespace API.Controllers
     [ApiController]
     public class MediaController : ControllerBase
     {
-        private readonly IMediator mediator;
+        private readonly DataContext dataContext;
 
-        public MediaController(IMediator mediator)
+        public MediaController(DataContext dataContext)
         {
-            this.mediator = mediator;
+            this.dataContext = dataContext;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Medium>>> List()
+        public async Task<IActionResult> List()
         {
-            return await mediator.Send(new List.Query());
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<Unit>> Create(Create.Command command)
-        {
-            return await mediator.Send(command);
+            return Ok(await dataContext.Media.ToListAsync());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Medium>> Details(Guid id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            return await mediator.Send(new Details.Query { Id = id });
+            var medium = await dataContext.Media.FindAsync(id);
+            if (medium == null) return NotFound("Medium not found!");
+            return Ok(medium);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Medium medium)
+        {
+            dataContext.Media.Add(medium);
+            if (await dataContext.SaveChangesAsync() > 0) return Created("", medium);
+            throw new Exception("Problem saving changes!");
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Unit>> Edit(Guid id, Edit.Command command)
+        public async Task<ActionResult<Unit>> Edit(Medium mediumDto)
         {
-            command.Id = id;
-            return await mediator.Send(command);
+            var medium = await dataContext.Media.FindAsync(mediumDto.Id);
+            if (medium == null) throw new Exception("Medium not found!");
+            medium.Name = mediumDto.Name ?? medium.Name;
+            medium.Url = mediumDto.Url ?? medium.Url;
+            medium.Emails = mediumDto.Emails ?? medium.Emails;
+            await dataContext.SaveChangesAsync();
+            return Ok(medium);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Unit>> Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            return await mediator.Send(new Delete.Command { Id = id });
+            var medium = await dataContext.Media.FindAsync(id);
+            if (medium == null) return NotFound("Medium not found!");
+            dataContext.Media.Remove(medium);
+            if (await dataContext.SaveChangesAsync() > 0) return Ok();
+            return BadRequest("Problem saving changes!");
         }
     }
 }

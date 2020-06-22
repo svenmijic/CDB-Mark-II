@@ -43,7 +43,7 @@ const Login = () => {
                 </Input>
               )}
             </Field>
-            <Button disabled={false} fluid positive type="submit">
+            <Button disabled={false} fluid primary type="submit">
               Prijavi se
             </Button>
           </Form>

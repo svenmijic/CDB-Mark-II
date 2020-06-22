@@ -6,8 +6,6 @@ import {
   Button,
   Icon,
   Header,
-  Dimmer,
-  Loader,
   Modal,
 } from "semantic-ui-react";
 import { ICompany } from "../../../app/models/company";
@@ -25,11 +23,17 @@ const CompaniesList: React.FC<IProps> = ({ companies, setUpdate }) => {
 
   return (
     <Segment>
-      <Button positive fluid onClick={() => setShowModal(true)}>
+      <Button primary fluid onClick={() => setShowModal(true)}>
         <Icon name="plus" />
         Dodaj novu tvrtku
-      </Button>{" "}
-      <Modal open={showModal} onClose={() => setShowModal(false)}>
+      </Button>
+      <Modal
+        size="small"
+        dimmer="inverted"
+        centered={false}
+        open={showModal}
+        onClose={() => setShowModal(false)}
+      >
         <CompaniesForm selectedCompany={undefined} setUpdate={setUpdate} />
       </Modal>
       <Input

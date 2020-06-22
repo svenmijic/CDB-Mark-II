@@ -73,6 +73,7 @@ const MediaDashboard = () => {
   return (
     <Fragment>
       <Modal
+        size="tiny"
         dimmer="inverted"
         centered={false}
         open={showEditModal}
@@ -80,7 +81,7 @@ const MediaDashboard = () => {
       >
         <MediaForm selectedMedium={selectedMedium} setUpdate={setUpdate} />
       </Modal>
-      <Button positive fluid onClick={() => setShowEditModal(true)}>
+      <Button primary fluid onClick={() => setShowEditModal(true)}>
         <Icon name="plus" />
         Dodaj novi medij
       </Button>
@@ -146,7 +147,7 @@ const MediaDashboard = () => {
           content="Jesi li siguran da želiš obrisati ovaj medij?"
         />
         <Modal.Actions>
-          <Button positive fluid onClick={handleDeleteMedium}>
+          <Button primary fluid onClick={handleDeleteMedium}>
             Da
           </Button>
           <Button negative fluid onClick={handleCloseDeleteModal}>
