@@ -13,6 +13,7 @@ import {
 import { ICompany } from "../../../app/models/company";
 import { Link } from "react-router-dom";
 import { CompaniesForm } from "../form/CompaniesForm";
+import LoaderComponent from "../../loader/LoaderComponent";
 
 interface IProps {
   companies: ICompany[];
@@ -39,9 +40,7 @@ const CompaniesList: React.FC<IProps> = ({ companies, setUpdate }) => {
       />
       <List celled relaxed>
         {companies.length === 0 ? (
-          <Dimmer active inverted>
-            <Loader inverted size="big" />
-          </Dimmer>
+          <LoaderComponent />
         ) : (
           companies.map((company) => (
             <List.Item key={company.id}>

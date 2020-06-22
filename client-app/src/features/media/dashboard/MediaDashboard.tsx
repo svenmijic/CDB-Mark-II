@@ -14,6 +14,7 @@ import MediaForm from "../form/MediaForm";
 import agent from "../../../app/api/agent";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoaderComponent from "../../loader/LoaderComponent";
 
 const MediaDashboard = () => {
   const [media, setMedia] = useState<IMedium[]>([]);
@@ -71,7 +72,12 @@ const MediaDashboard = () => {
 
   return (
     <Fragment>
-      <Modal open={showEditModal} onClose={handleCloseForm}>
+      <Modal
+        dimmer="inverted"
+        centered={false}
+        open={showEditModal}
+        onClose={handleCloseForm}
+      >
         <MediaForm selectedMedium={selectedMedium} setUpdate={setUpdate} />
       </Modal>
       <Button positive fluid onClick={() => setShowEditModal(true)}>
@@ -79,11 +85,7 @@ const MediaDashboard = () => {
         Dodaj novi medij
       </Button>
       {media.length === 0 ? (
-        <Segment>
-          <Dimmer active inverted>
-            <Loader inverted size="big" />
-          </Dimmer>
-        </Segment>
+        <LoaderComponent />
       ) : (
         <Table celled selectable striped>
           <Table.Header>
@@ -133,7 +135,8 @@ const MediaDashboard = () => {
       )}
 
       <Modal
-        centered
+        centered={false}
+        dimmer="inverted"
         size="mini"
         open={showDeleteModal}
         onClose={handleCloseDeleteModal}

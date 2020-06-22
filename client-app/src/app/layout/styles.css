@@ -1,21 +1,17 @@
 html {
   height: 100%;
 }
-
 body {
   min-height: 100% !important;
   background-color: rgb(245, 245, 245) !important;
   font-size: 1.1em;
 }
-
 .ui.inverted.top.fixed.menu {
   background-color: #1b75bc !important;
 }
-
 .ui.button {
   font-size: 1.1rem;
 }
-
 .home-page {
   background: rgb(27, 117, 188);
   background: linear-gradient(
@@ -27,20 +23,22 @@ body {
   opacity: 0.8;
   min-height: 100vh;
   margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
-
 .home-page .header {
-  font-size: 4.5em !important;
+  font-size: min(7vw, 3em) !important;
   letter-spacing: 1px;
+  margin-bottom: 30px;
 }
-
 .home-page .segment {
-  width: 400px !important;
-  margin: auto;
+  max-width: 450px;
+  width: 90%;
   border-radius: 15px;
 }
-
 .ui.inverted.top.fixed.menu .item {
   font-size: 22px;
   font-weight: bold;
@@ -48,36 +46,81 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-
 form > div {
   margin-bottom: 30px !important;
 }
-
 .modal .actions {
   display: flex;
   justify-content: space-around;
 }
-
 .ui.container {
   max-width: 80% !important;
 }
-
-input, button {
+input,
+button {
   border-radius: 30px !important;
 }
-
 .form .label {
   border-radius: 30px !important;
 }
-
 .search-field {
   margin: 30px 0;
 }
-
 .list .item a {
   padding: 5px 0;
 }
-
 .dimmer {
   margin-top: 50px;
+}
+input::placeholder {
+  color: gray !important;
+}
+.dimmer.inverted {
+  margin-top: 62px !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.modal .segment {
+  padding: 30px;
+  border-radius: 20px !important;
+}
+.modal {
+  border-radius: 20px !important;
+}
+.modal > .header {
+  border-radius: 20px 20px 0 0 !important;
+}
+.modal > .actions {
+  border-radius: 0 0 20px 20px !important;
+}
+.loader-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+}
+.loader-spinner {
+  margin-top: 30px;
+  border: 0.5vw solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 0.5vw solid #1b75bc;
+  width: 8vw;
+  height: 8vw;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

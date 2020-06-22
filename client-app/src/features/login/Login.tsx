@@ -1,5 +1,5 @@
 import React from "react";
-import { Segment, Form, Button } from "semantic-ui-react";
+import { Segment, Form, Button, Input, Icon, Header } from "semantic-ui-react";
 import { Form as FinalForm, Field } from "react-final-form";
 import { useHistory } from "react-router-dom";
 
@@ -21,6 +21,7 @@ const Login = () => {
 
   return (
     <Segment clearing padded="very">
+      <Header>BEST Zagreb CDB</Header>
       <FinalForm
         onSubmit={handleFormSubmit}
         initialValues={loginCreds}
@@ -28,16 +29,18 @@ const Login = () => {
           <Form onSubmit={handleSubmit}>
             <Field name="username">
               {({ input }) => (
-                <div>
-                  <input {...input} placeholder="Email" />
-                </div>
+                <Input fluid iconPosition="left" placeholder="Email">
+                  <Icon name="at" />
+                  <input {...input} />
+                </Input>
               )}
             </Field>
             <Field name="password">
               {({ input }) => (
-                <div>
-                  <input {...input} placeholder="Lozinka" />
-                </div>
+                <Input fluid iconPosition="left" placeholder="Lozinka">
+                  <Icon name="lock" />
+                  <input {...input} />
+                </Input>
               )}
             </Field>
             <Button disabled={false} fluid positive type="submit">

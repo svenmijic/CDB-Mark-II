@@ -12,7 +12,7 @@ namespace Application.Projects
     {
         public class Command : IRequest
         {
-            public long Id { get; set; }
+            public Guid Id { get; set; }
             public string Name { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime? EndDate { get; set; }

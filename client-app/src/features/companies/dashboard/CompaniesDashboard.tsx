@@ -22,7 +22,6 @@ const CompaniesDashboard = () => {
       );
     });
     setUpdate(false);
-    console.log("RELOAD");
   }, [setCompanies, update]);
 
   return (
